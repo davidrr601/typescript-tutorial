@@ -37,4 +37,19 @@ if(typeof(desconocido)=="string"){
     console.log("El ganador del balon d'or es: "+ nombre);
 
 
+// ARRAYS
+let numeros:number[]=[1,2,3,4];3
+console.log(numeros[1])
+
+let mixto:(number|string)[]=["David","Roman",22,2003];
+console.log(`Me llamo ${mixto[0]} y tengo ${mixto[2]} años`)
+
+let array2d:number[][]=[[1,2,3],[4,5,6],[7,8,9]];
+
+console.log(`La posicion 0,0 del array 2d es : ${array2d[0]!=undefined?array2d[0][0]:0}`);
+
+let numeros2:number[]=[5,6,7,8];
+let numeros3= {...numeros,...numeros2};
+console.log(numeros3);
+numeros3[0]=33;
 
