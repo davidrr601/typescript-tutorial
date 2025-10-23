@@ -217,8 +217,120 @@ import http = require("http");
 
                 type Empleado = User&PuestoTrabajo;
 
-                type Saludo=`Hola $(number)`;
-                mensaje:Saludo="";
-          
+                //type Saludo=`Hola $(number)`;
+                //mensaje:Saludo="";
+                
+                //UNIONES
+                type Role= 'admin'|'user'|50;               
+                let mirol: Role='admin';
+                
+                type Userid= User| number;
+                let user2: Userid = 20
+
+                type Entidad= 'USER'|'PRODUCTS';
+                type Accion= 'CREAR'|'MODIFICAR'|'BORRAR'|'LISTAR'
+                
+                type Permisos = `${Entidad}_${Accion}`;
+                let permiso1:Permisos= 'USER_LISTAR';
+                console.log(permiso1);
+
+                //ENUMERADOS
+                type TDireccion='NORTE'|'SUR'|'ESTE'|'OESTE'
+                enum Direccion{
+                    norte='NORTE', //Indica el indice de partida
+                    sur='SUR',
+                    este='ESTE',
+                    oeste='OESTE'
+                }
+
+                let d1:TDireccion = 'NORTE'
+                let d2:Direccion =Direccion.norte
+                console.log(Direccion)
+                
+                enum EstadoTicket{
+                    urgente,
+                    abierto,
+                    enProceso,
+                    cerrado
+                }
+                let ticket = {
+                    nombre:'Paco' ,
+                    estado:EstadoTicket.abierto
+                    
+                }
+                    switch(ticket.estado){
+                    case 0:
+                        console.log('Ticket Abierto')
+                    break;
+                    case 1:
+                        console.log('Ticket en Proceso')
+                        break;
+                    case 2:
+                        console.log('Ticket Cerrado');
+
+                }
+
+                type IdCoche =`id-coche-${number}`
+                //INTERFACES
+                interface Vehiculo{
+                    readonly id: IdCoche,
+                    marca: string,
+                    color?:string,
+                    modelo: string,
+                    anno_fab: number,
+                    muestraInfo:(propietario:string)=>String
+                }
+
+                interface Vehiculo{
+                    etiquetaEco: boolean
+                }
+                let miVehiculo:Vehiculo={
+                    etiquetaEco : false,
+                    id :'id-coche-1',
+                    marca:'Seat',
+                    modelo:'Altea',
+                    anno_fab:2011,
+                    muestraInfo:(propietario:string)=>{return `el propietario del vehiculo es ${propietario}`}
+                }
+
+                console.log(miVehiculo.muestraInfo("David"))
+
+                interface Moto extends Vehiculo{
+                    tipoManillar: number
+                }
+                interface Coche extends Vehiculo{
+                    tamVolante: number
+                }
+                let micoche:Coche ={
+                    etiquetaEco : false,
+                    id :'id-coche-1',
+                    marca:'Seat',
+                    modelo:'Altea',
+                    anno_fab:2011,
+                    muestraInfo:(propietario:string)=>{return `el propietario del vehiculo es ${propietario}`},
+                    tamVolante:25
+                }
+                console.log(micoche)
+
+                interface OperacionMatematica {
+                    (a:number,b:number):number;
+                }
+                const sumas:OperacionMatematica = (a:number,b:number)=>a+b;
+                const restas:OperacionMatematica= (a:number,b:number)=>{return a-b};
+                const multi:OperacionMatematica=function(a:number,b:number){return a*b};
+
+                class Jugador{
+
+                    constructor(public nombre:string,public estaActivo:boolean){}
+                    muestraInformacion() {
+                        console.log(`el jugador ${this.nombre} ${this.estaActivo?'esta Activo':'No esta activo'}`);
+                          
+                    }
+                }
+                let player1= new Jugador("David",true);
+                player1.muestraInformacion();
+
+
+
 
 
