@@ -319,16 +319,23 @@ import http = require("http");
                 const restas:OperacionMatematica= (a:number,b:number)=>{return a-b};
                 const multi:OperacionMatematica=function(a:number,b:number){return a*b};
 
-                class Jugador{
+                class Persona{
+                    constructor(public nombre:string,public apellido:string){}
+                }
+                class Jugador extends Persona{
 
-                    constructor(public nombre:string,public estaActivo:boolean){}
+                    constructor(nombre:string, apellido:string, public alias:string,public estaActivo:boolean){
+                        super(nombre,apellido);
+
+                    }
                     muestraInformacion() {
                         console.log(`el jugador ${this.nombre} ${this.estaActivo?'esta Activo':'No esta activo'}`);
                           
                     }
                 }
-                let player1= new Jugador("David",true);
+                let player1= new Jugador("David","Roman","19",false);
                 player1.muestraInformacion();
+
 
 
 
